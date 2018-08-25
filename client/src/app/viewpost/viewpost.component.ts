@@ -15,7 +15,7 @@ export class ViewpostComponent implements OnInit {
   t:String;
   constructor(private postwallservice:PostwallService,private router:ActivatedRoute) {
      this.router.data.subscribe((res)=>{
-       // this.post=res.post[0];
+        this.post=res.post[0];
      })
    }
   ngOnInit() {

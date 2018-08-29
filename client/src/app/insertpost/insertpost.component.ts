@@ -8,6 +8,8 @@ import {
   FormBuilder
 } from '@angular/forms';
 import {InsertpostService} from './insertpost.service';
+import {LoginService} from '../login/login.service'
+import {Router} from '@angular/router'
 @Component({
   selector: 'app-insertpost',
   templateUrl: './insertpost.component.html',
@@ -18,9 +20,18 @@ export class InsertpostComponent implements OnInit {
   postform:FormGroup;
   title:FormControl;
   content:FormControl
-  constructor(private insertpostservice:InsertpostService) { }
+  constructor(private insertpostservice:InsertpostService,private loginservice:LoginService,private route:Router) {
+      var temp=this.loginservice.getId();
+      if(temp.msg=="success"){
+        //nothing
+      }
+      else{
+         this.route.navigate(['login']);
+      }
+   }
 
   ngOnInit() {
+    
     this.createFormControls();
     this.createForm();
   }
@@ -51,5 +62,9 @@ export class InsertpostComponent implements OnInit {
          }
       });
     }    
+  }
+  logout(){
+     this.loginservice.logout();
+     this.route.navigate(['login']);
   }
 }

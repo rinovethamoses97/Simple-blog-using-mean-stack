@@ -6,6 +6,7 @@ var router=express.Router();
 router.use(cors());
 router.use(bodyparser.json());
 var post=require('./models/post');
+var user=require('./models/user');
 router.post('/insertpost',function(req,res){
     var newpost=new post({
         date:new Date(),
@@ -34,5 +35,23 @@ router.post('/getpost',function(req,res){
     })
 });
 
+router.post('/login',function(req,res){
+    var email=req.body.email;
+    var password=req.body.password;
+    user.findOne({email:email,password:password},function(err,users){
+        if(err){
+            res.json({msg:"Error"});
+        }
+        else{
+            if(users){
+                res.json({data:users,msg:"success"});
+            }
+            else{
+                res.json({msg:"failed"});
+            }
+            
+        }
+    })
+})
 
 module.exports=router;

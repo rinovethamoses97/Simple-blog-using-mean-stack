@@ -8,6 +8,7 @@ import { InsertpostComponent } from './insertpost/insertpost.component';
 import { PostwallComponent } from './postwall/postwall.component';
 import { ViewpostComponent } from './viewpost/viewpost.component';
 import { ViewpostresolveService } from './viewpost/viewpostresolve.service';
+import { LoginComponent } from './login/login.component';
 const approutes: Routes=[
   {
     path:'insertpost',component:InsertpostComponent,
@@ -24,6 +25,10 @@ const approutes: Routes=[
   {
     path:'viewpost',
     redirectTo:'postwall'
+  },
+  {
+    path:'login',
+    component:LoginComponent
   }
 ];
 @NgModule({
@@ -31,7 +36,8 @@ const approutes: Routes=[
     AppComponent,
     InsertpostComponent,
     PostwallComponent,
-    ViewpostComponent
+    ViewpostComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

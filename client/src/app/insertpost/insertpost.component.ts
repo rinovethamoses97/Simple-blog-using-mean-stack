@@ -19,7 +19,8 @@ export class InsertpostComponent implements OnInit {
 
   postform:FormGroup;
   title:FormControl;
-  content:FormControl
+  content:FormControl;
+  category:FormControl;
   constructor(private insertpostservice:InsertpostService,private loginservice:LoginService,private route:Router) {
       var temp=this.loginservice.getId();
       if(temp.msg=="success"){
@@ -38,16 +39,18 @@ export class InsertpostComponent implements OnInit {
   createFormControls(){
     this.title=new FormControl('');
     this.content=new FormControl('');
+    this.category=new FormControl('');
   }
   createForm(){
     this.postform=new FormGroup({
       title:this.title,
       content:this.content,
+      category:this.category,
     });
   }
   submitpost(){
     if(this.postform.valid){
-      if(this.postform.value.title=="" || this.postform.value.content==""){
+      if(this.postform.value.title=="" || this.postform.value.content=="" ||this.postform.value.category==""){
         alert("Fields Cannot be Empty");
         return;
       }

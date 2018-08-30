@@ -14,7 +14,7 @@ const approutes: Routes=[
     path:'insertpost',component:InsertpostComponent,
   },
   {
-    path:'postwall', component:PostwallComponent,
+    path:'home', component:PostwallComponent,
   },
   {
     path:'viewpost/:id',component:ViewpostComponent,

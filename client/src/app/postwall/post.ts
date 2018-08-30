@@ -3,5 +3,5 @@ export class post{
     date:Date;
     title:String;
     content:String;
-
+    category:String;
 }

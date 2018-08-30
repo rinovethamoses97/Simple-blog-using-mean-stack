@@ -17,4 +17,11 @@ export class ViewpostresolveService implements Resolve<any> {
     });
     return this.http.post("http://localhost:3000/api/getpost",{id:this.id},{headers:headers});
   }
+
+  insertcomment(comment){
+    var headers=new HttpHeaders({
+      'Content-Type':  'application/json',
+    });
+    return this.http.post("http://localhost:3000/api/insertcomment",comment,{headers:headers});
+  }
 }

@@ -12,6 +12,10 @@ var postSchema=mongoose.Schema({
     content:{
         type:String,
         required:true,
+    },
+    category:{
+        type:String,
+        required:true
     }
     
 });

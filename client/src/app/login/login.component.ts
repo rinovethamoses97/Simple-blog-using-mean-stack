@@ -12,13 +12,21 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css','../postwall/vendor/bootstrap/css/bootstrap.min.css','../postwall/css/blog-home.css']
 })
 export class LoginComponent implements OnInit {
   loginform:FormGroup;
   email:FormControl;
   password:FormControl;
-  constructor(private loginservice:LoginService,private route:Router) { }
+  constructor(private loginservice:LoginService,private route:Router) {
+    var temp=this.loginservice.getId();
+      if(temp.msg=="success"){
+         this.route.navigate(['insertpost']);
+      }
+      else{
+         //nothing
+      }
+   }
   createFormControl(){
     this.email=new FormControl('');
     this.password=new FormControl('');

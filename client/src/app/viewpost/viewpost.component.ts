@@ -54,6 +54,7 @@ export class ViewpostComponent implements OnInit {
       this.viewpostservice.insertcomment(comment).subscribe((data:any)=>{
          if(data.msg=="success"){
             alert("Comment posted Succesfully");
+            this.comments.push(this.commentform.value);
             this.commentform.reset();
          }
          else{

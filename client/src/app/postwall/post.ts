@@ -4,4 +4,5 @@ export class post{
     title:String;
     content:String;
     category:String;
+    userid:String;
 }

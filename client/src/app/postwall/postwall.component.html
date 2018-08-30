@@ -1,7 +1,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed">
       <div class="container">
-        <a class="navbar-brand" href="#">Rino's Blog</a>
+        <a class="navbar-brand" href="#">{{user.name}}'s Blog</a>
         <button onclick="if(document.getElementById('navbarResponsive').className!='navbar-collapse collapse show'){document.getElementById('navbarResponsive').className='navbar-collapse collapse show';}else{document.getElementById('navbarResponsive').className='collapse navbar-collapse';}" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -49,7 +49,7 @@
             </div>
             <div class="card-footer text-muted">
               Posted on {{post.date}} by
-              <a href="#">Rino</a>
+              <a href="#">{{user.name}}</a>
             </div>
           </div>
           </div>

@@ -15,6 +15,7 @@ router.post('/insertpost',function(req,res){
         title:req.body.title,
         content:req.body.content,
         category:req.body.category,
+        userid:req.body.userid
     });
     newpost.save(function(err){
         if(err){
@@ -26,9 +27,14 @@ router.post('/insertpost',function(req,res){
     });
 }); 
 router.post('/getposts',function(req,res){
-    post.find(function(err,posts){
+    post.find({userid:req.body.userid},function(err,posts){
         res.json(posts);
     })
+});
+router.post('/getUser',function(req,res){
+    user.find({_id:req.body.userid},function(err,users){
+        res.json(users);
+    });
 });
 router.post('/getpost',function(req,res){
     post.find({_id:req.body.id},function(err,posts){

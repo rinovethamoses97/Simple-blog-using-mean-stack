@@ -16,6 +16,10 @@ var postSchema=mongoose.Schema({
     category:{
         type:String,
         required:true
+    },
+    userid:{
+        type:String,
+        required:true
     }
     
 });

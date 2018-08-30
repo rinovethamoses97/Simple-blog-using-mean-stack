@@ -29,6 +29,12 @@ export class LoginService {
         return {id:localStorage.getItem("id"),msg:"success"};
      }
   }
+  getUser(userid){
+    var headers=new HttpHeaders({
+      'Content-Type':  'application/json',
+    });
+    return this.http.post("http://localhost:3000/api/getUser",{userid:userid},{headers:headers}); 
+  }
   logout(){
     this.email=null;
     this.id=null;

@@ -13,7 +13,7 @@ import {Router} from '@angular/router'
 @Component({
   selector: 'app-insertpost',
   templateUrl: './insertpost.component.html',
-  styleUrls: ['./insertpost.component.css']
+  styleUrls: ['./insertpost.component.css','../postwall/vendor/bootstrap/css/bootstrap.min.css','../postwall/css/blog-home.css']
 })
 export class InsertpostComponent implements OnInit {
 
@@ -21,8 +21,10 @@ export class InsertpostComponent implements OnInit {
   title:FormControl;
   content:FormControl;
   category:FormControl;
+  userid:String;
   constructor(private insertpostservice:InsertpostService,private loginservice:LoginService,private route:Router) {
       var temp=this.loginservice.getId();
+      this.userid=temp.id;
       if(temp.msg=="success"){
         //nothing
       }
@@ -54,7 +56,13 @@ export class InsertpostComponent implements OnInit {
         alert("Fields Cannot be Empty");
         return;
       }
-      this.insertpostservice.addPost(this.postform.value)
+      var temp_postform={
+        category:this.postform.value.category,
+        title:this.postform.value.title,
+        content:this.postform.value.content,
+        userid:this.userid,
+      }
+      this.insertpostservice.addPost(temp_postform)
       .subscribe((data:any) => {
          if(data.msg=="success"){
             alert("Inserted");

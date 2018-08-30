@@ -9,12 +9,18 @@ import { PostwallComponent } from './postwall/postwall.component';
 import { ViewpostComponent } from './viewpost/viewpost.component';
 import { ViewpostresolveService } from './viewpost/viewpostresolve.service';
 import { LoginComponent } from './login/login.component';
+import { PostwallService } from './postwall/postwall.service';
+import { UserresolverService } from './postwall/userresolver.service';
 const approutes: Routes=[
   {
     path:'insertpost',component:InsertpostComponent,
   },
   {
-    path:'home', component:PostwallComponent,
+    path:'home/:userid', component:PostwallComponent,
+    resolve:{
+      posts:PostwallService,
+      user:UserresolverService
+    }
   },
   {
     path:'viewpost/:id',component:ViewpostComponent,

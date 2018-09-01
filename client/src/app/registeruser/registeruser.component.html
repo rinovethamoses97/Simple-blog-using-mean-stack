@@ -1,0 +1,98 @@
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed">
+  <div class="container">
+    <a class="navbar-brand" href="#">Coding Blog</a>
+    <button onclick="if(document.getElementById('navbarResponsive').className!='navbar-collapse collapse show'){document.getElementById('navbarResponsive').className='navbar-collapse collapse show';}else{document.getElementById('navbarResponsive').className='collapse navbar-collapse';}" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/home">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/register">Register</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+            
+    </div>
+    <div class="col-md-8">
+      <div class="card my-4">
+        <h5 class="card-header">Register</h5>
+        <div class="card-body">
+          <div class="row">
+          <div class="input-group">
+            <div class="col-md-12">
+              <!-- Register user Form -->
+              <form class="form-horizontal" [formGroup]="registerform" (ngSubmit)="registerformsubmit()">
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="name">Name:</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" [formControl]="name">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="email">Email:</label>
+                  <div class="col-sm-10">
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" [formControl]="email">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="password">Password:</label>
+                  <div class="col-sm-10">          
+                    <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" [formControl]="password">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-3" for="repassword">ReEnter Password:</label>
+                  <div class="col-sm-10">          
+                    <input type="password" class="form-control" id="repassword" placeholder="ReEnter password" name="repassword" [formControl]="repassword">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="phone">Phone:</label>
+                  <div class="col-sm-10">          
+                    <input type="text" class="form-control" id="phone" placeholder="Enter phone" name="phone" [formControl]="phone">
+                  </div>
+                </div>
+                
+                
+                <div class="form-group">        
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default" >Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>  
+    </div> 
+    <div class="col-md-2">
+
+    </div>
+  </div>
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer class="py-5 bg-dark fixed">
+   <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+   </div>
+  <!-- /.container -->
+</footer>

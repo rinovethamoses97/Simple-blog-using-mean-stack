@@ -1,4 +1,4 @@
-    <!-- Navigation -->
+<!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed">
       <div class="container">
         <a class="navbar-brand" href="#">{{user.name}}'s Blog</a>
@@ -7,12 +7,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home
+            <li class="nav-item">
+              <a class="nav-link" href="/home/{{user._id}}">Home
                 <span class="sr-only">(current)</span>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="/about/{{user._id}}">About</a>
             </li>
             <!-- <li class="nav-item">
@@ -32,42 +32,22 @@
       <div class="row">
 
         <!-- Blog Entries Column -->
-        <div class="col-md-8">
-
-          <h1 class="my-4">My Posts
-            <small></small>
-          </h1>
+        <div class="col-md-7">
 
           <!-- Blog Post -->
-          <div *ngFor="let post of posts">
-          <div class="card mb-4" *ngIf="post._id">
-            <img  style="height:300px" class="card-img-top" src="https://wallup.net/wp-content/uploads/2017/03/29/480566-web_development-minimalism.jpg" alt="Card image cap">
+          <div class="card my-4">
+            <img  style="height:400px;" class="card-img-top" src="http://foodbank.bradfrostweb.com/patternlab/v7/images/fpo_avatar.png" alt="Card image cap">
             <div class="card-body">
-              <h2 class="card-title">{{post.title}}</h2>
-              <p class="card-text">{{post.content| slice:0:100}}...</p>
-              <input type="button" value='Read More' id='{{post._id}}' class="btn btn-primary" (click)="setContent($event)">
+                  <b>Name: </b>{{user.name}}<br>
+                  <b>Email: </b>{{user.email}}<br>
+                  <b>Phone: </b>{{user.phone}}<br>
             </div>
             <div class="card-footer text-muted">
-              Posted on {{post.date}} by
-              <a href="#">{{user.name}}</a>
+              Posted on  by
+              <a href="#"></a>
             </div>
           </div>
-          </div>
-          <div *ngIf="posts.length==0">
-            No post from the user...
-          </div>
-        
-
-          <!-- Pagination -->
-          <ul class="pagination justify-content-center mb-4">
-            <li class="page-item">
-              <a class="page-link" href="#">&larr; Older</a>
-            </li>
-            <li class="page-item disabled">
-              <a class="page-link" href="#">Newer &rarr;</a>
-            </li>
-          </ul>
-
+          
         </div>
 
         <!-- Sidebar Widgets Column -->
@@ -75,33 +55,28 @@
 
           <!-- Search Widget -->
           <div class="card my-4">
-            <h5 class="card-header">Search</h5>
+            <h5 class="card-header">Projects</h5>
             <div class="card-body">
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for...">
-                <span class="input-group-btn">
-                  <button class="btn btn-secondary" type="button">Go!</button>
-                </span>
-              </div>
+              
             </div>
           </div>
 
           <!-- Categories Widget -->
           <div class="card my-4">
-            <h5 class="card-header">Categories</h5>
+            <h5 class="card-header">links</h5>
             <div class="card-body">
               <div class="row">
                 <div class="col-lg-6">
-                  <ul class="list-unstyled mb-0" *ngFor="let category of category ;index as i">
-                    <li *ngIf="i%2==0">
-                      <a id="{{category}}" href="" (click)="filterbycategory($event)" >{{category}}</a>
+                  <ul class="list-unstyled mb-0">
+                    <li>
+                      <a id="" href=""  ></a>
                     </li>
                   </ul>
                 </div>
                 <div class="col-lg-6">
-                  <ul class="list-unstyled mb-0" *ngFor="let category of category;index as i;">
-                    <li *ngIf="i%2!=0">
-                      <a id="{{category}}" href="" (click)="filterbycategory($event)" >{{category}}</a>
+                  <ul class="list-unstyled mb-0" >
+                    <li >
+                      <a id="" href=""  ></a>
                     </li>
                   </ul>
                 </div>
@@ -111,12 +86,18 @@
 
           <!-- Side Widget -->
           <div class="card my-4">
-            <h5 class="card-header">Side Widget</h5>
+            <h5 class="card-header">Skills</h5>
             <div class="card-body">
-              Welcome to my Blog friends, Hope You guys like all my post!! Give your reviews in comment section!!
+              
             </div>
           </div>
-
+          <!-- Achievements -->
+          <div class="card my-4">
+            <h5 class="card-header">Achievements</h5>
+            <div class="card-body">
+              
+            </div>
+          </div>
         </div>
 
       </div>
@@ -127,12 +108,8 @@
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">
-      <div class="container">
+      <div class="container1">
         <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
       </div>
       <!-- /.container -->
     </footer>
-    
-    
-    <!-- Bootstrap core JavaScript -->
-    

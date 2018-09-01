@@ -11,15 +11,29 @@ import { ViewpostresolveService } from './viewpost/viewpostresolve.service';
 import { LoginComponent } from './login/login.component';
 import { PostwallService } from './postwall/postwall.service';
 import { UserresolverService } from './postwall/userresolver.service';
+import { AboutComponent } from './about/about.component';
+import { HomeComponent } from './home/home.component';
+import { RegisteruserComponent } from './registeruser/registeruser.component';
+
 const approutes: Routes=[
   {
     path:'insertpost',component:InsertpostComponent,
+  },
+  {
+    path:'home',component:HomeComponent
+    
   },
   {
     path:'home/:userid', component:PostwallComponent,
     resolve:{
       posts:PostwallService,
       user:UserresolverService
+    }
+  },
+  {
+    path:'about/:userid',component:AboutComponent,
+    resolve:{
+       user:UserresolverService
     }
   },
   {
@@ -35,7 +49,11 @@ const approutes: Routes=[
   {
     path:'login',
     component:LoginComponent
-  }
+  },
+ {
+   path:'register',
+   component:RegisteruserComponent
+ }
 ];
 @NgModule({
   declarations: [
@@ -43,7 +61,10 @@ const approutes: Routes=[
     InsertpostComponent,
     PostwallComponent,
     ViewpostComponent,
-    LoginComponent
+    LoginComponent,
+    AboutComponent,
+    HomeComponent,
+    RegisteruserComponent
   ],
   imports: [
     BrowserModule,

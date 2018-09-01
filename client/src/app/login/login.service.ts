@@ -35,9 +35,16 @@ export class LoginService {
     });
     return this.http.post("http://localhost:3000/api/getUser",{userid:userid},{headers:headers}); 
   }
+  finduser(useremail){
+    var headers=new HttpHeaders({
+      'Content-Type':  'application/json',
+    });
+    return this.http.post("http://localhost:3000/api/finduser",{useremail:useremail},{headers:headers}); 
+  }
   logout(){
     this.email=null;
     this.id=null;
     localStorage.clear();
   }
+  
 }

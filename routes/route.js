@@ -25,6 +25,22 @@ router.post('/insertpost',function(req,res){
             res.send({msg:'success'});
         }
     });
+});
+router.post('/createuser',function(req,res){
+    var newuser=new user({
+        name:req.body.name,
+        email:req.body.email,
+        password:req.body.password,
+        phone:req.body.phone,
+    })
+    newuser.save(function(err){
+        if(err){
+            res.send({msg:"failed"});
+        }
+        else{
+            res.send({msg:"success"});
+        }
+    });
 }); 
 router.post('/getposts',function(req,res){
     post.find({userid:req.body.userid},function(err,posts){
@@ -36,6 +52,17 @@ router.post('/getUser',function(req,res){
         res.json(users);
     });
 });
+router.post('/finduser',function(req,res){
+    user.find({email:new RegExp('^'+req.body.useremail+'', 'i')},function(err,users){
+        res.json(users);
+    })
+})
+router.post('/checkuser',function(req,res){
+    user.find({email:req.body.email},function(err,users){
+        res.json(users);
+    })
+})
+
 router.post('/getpost',function(req,res){
     post.find({_id:req.body.id},function(err,posts){
         //res.json(posts);

@@ -75,6 +75,7 @@ export class InsertpostComponent implements OnInit {
     }    
   }
   logout(){
+     event.preventDefault();
      this.loginservice.logout();
      this.route.navigate(['login']);
   }

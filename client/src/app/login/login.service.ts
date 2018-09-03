@@ -26,7 +26,7 @@ export class LoginService {
        return {msg:"failed"}
      }
      else{
-        return {id:localStorage.getItem("id"),msg:"success"};
+        return {id:localStorage.getItem("id"),email:localStorage.getItem("email"),msg:"success"};
      }
   }
   getUser(userid){

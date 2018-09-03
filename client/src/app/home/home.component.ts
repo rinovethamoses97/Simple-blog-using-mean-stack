@@ -12,10 +12,23 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   useremail:FormControl;
   users:user[];
+  login_status:boolean;
+  name:String;
   constructor(private loginservice:LoginService,private router:Router) { }
 
   ngOnInit() {
     this.useremail=new FormControl('');
+     var temp=this.loginservice.getId();
+     if(temp.msg=="success"){
+        this.login_status=true;
+        this.loginservice.getUser(temp.id).subscribe((data:any)=>{
+           this.name=data[0].name;
+        })
+
+     }
+     else{
+        this.login_status=false;
+     }
   }
   fetchuser(){
        

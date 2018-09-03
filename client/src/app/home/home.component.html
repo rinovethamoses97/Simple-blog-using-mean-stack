@@ -18,6 +18,18 @@
         <li class="nav-item">
           <a class="nav-link" href="/register">Register</a>
         </li>
+        <div *ngIf="login_status==false">
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        </div>
+        <div *ngIf="login_status==true">
+          <li class="nav-item active">
+            <a style="color:forestgreen;" class="nav-link" href="/login">{{name}}</a>
+          </li>
+        </div>
+          
+        
       </ul>
     </div>
   </div>
@@ -37,7 +49,7 @@
                 <div class="row">
                 <div class="input-group">
                   <div class="col-md-8">
-                    <input type="text" [formControl]="useremail" class="form-control" placeholder="Search for users(email).." (input)="fetchuser()">         
+                    <input type="text" [formControl]="useremail" class="form-control" placeholder="Search for users..." (input)="fetchuser()">         
                   </div>
                   <div class="col-md-4">
                       <span class="input-group-btn">
@@ -46,13 +58,12 @@
                   </div>
                 </div>
               </div>
-                <div *ngFor="let user of users">
-                  <div class="row">
-                      <div class="col-md-8">
-                        <p style="padding:.375rem .75rem;"><a href="/home/{{user._id}}">{{user.email}}</a></p>
-                        <hr>                
-                      </div>
-                  </div>
+              <div>
+                <ul *ngFor="let user of users" style="margin-top:16px;max-height:180px;overflow:auto;list-style:none;padding-left:0px;">                  
+                    <div class="col-md-8">
+                        <li><a href="/home/{{user._id}}">{{user.email}}</a></li>
+                    </div>
+                </ul>
               </div>
             </div>
       </div>

@@ -14,6 +14,7 @@ export class RegisteruserComponent implements OnInit {
   password:FormControl;
   repassword:FormControl;
   phone:FormControl;
+  filetoupload:File;
   constructor(private registeruserservice:RegisteruserService) { }
   createformelements(){
     this.email=new FormControl('');
@@ -62,5 +63,15 @@ export class RegisteruserComponent implements OnInit {
         });
     }
   }
-  
+  onfileadded(files: FileList){
+    this.filetoupload=files.item(0);
+    console.log(this.filetoupload);
+  }
+  upload(){
+    const formData: FormData = new FormData();
+    formData.append('file', this.filetoupload, this.filetoupload.name);
+    this.registeruserservice.upload(formData).subscribe((data:any)=>{
+        console.log(data);
+    })
+  }
 }

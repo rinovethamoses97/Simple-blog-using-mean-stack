@@ -21,4 +21,10 @@ export class RegisteruserService {
     });
     return this.http.post("http://localhost:3000/api/createuser",user,{headers:headers}); 
   }
+  upload(data){
+    var headers=new HttpHeaders({
+      'Content-Type':  'multipart/form-data',
+    });
+    return this.http.post("http://localhost:3000/api/upload",data); 
+  }
 }

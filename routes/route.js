@@ -8,6 +8,8 @@ router.use(bodyparser.json());
 var post=require('./models/post');
 var user=require('./models/user');
 var comment=require('./models/comment');
+var IncomingForm = require('formidable').IncomingForm;
+var fs=require('fs');
 router.post('/insertpost',function(req,res){
     var newpost=new post({
         date:new Date(),
@@ -47,6 +49,25 @@ router.post('/getposts',function(req,res){
         res.json(posts);
     })
 });
+router.post('/upload',function(req,res){
+   
+    var form = new IncomingForm();
+    form.on('file', (field, file) => {
+    // Do something with the file
+    // e.g. save it to the database
+    // you can access it using file.path
+      
+      res.send({msg:"success"});
+    });
+    form.on('fileBegin', function (name, file){
+        console.log(__dirname);
+        file.path = "C:/Users/RinoVM/Desktop/Rino_Blog/client/src/assets"+ '/uploads/' + "profile"+file.name+".jpeg";
+    });
+    form.on('end', () => {
+        // res.json();
+    });
+    form.parse(req);
+    });
 router.post('/getUser',function(req,res){
     user.find({_id:req.body.userid},function(err,users){
         res.json(users);

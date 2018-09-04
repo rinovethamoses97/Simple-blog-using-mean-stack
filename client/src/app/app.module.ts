@@ -14,6 +14,7 @@ import { UserresolverService } from './postwall/userresolver.service';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { RegisteruserComponent } from './registeruser/registeruser.component';
+import { UploadphotoComponent } from './uploadphoto/uploadphoto.component';
 
 const approutes: Routes=[
   {
@@ -53,6 +54,9 @@ const approutes: Routes=[
  {
    path:'register',
    component:RegisteruserComponent
+ },{
+   path:'upload',
+   component:UploadphotoComponent
  }
 ];
 @NgModule({
@@ -64,7 +68,8 @@ const approutes: Routes=[
     LoginComponent,
     AboutComponent,
     HomeComponent,
-    RegisteruserComponent
+    RegisteruserComponent,
+    UploadphotoComponent
   ],
   imports: [
     BrowserModule,

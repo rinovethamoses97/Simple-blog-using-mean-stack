@@ -9,6 +9,7 @@ import { RegisteruserService } from '../registeruser/registeruser.service';
 export class UploadphotoComponent implements OnInit {
   filetoupload:File;
   file:String;
+  profile:File;
   constructor(private registeruserservice:RegisteruserService) { }
 
   ngOnInit() {
@@ -23,6 +24,7 @@ export class UploadphotoComponent implements OnInit {
     this.registeruserservice.upload(formData).subscribe((data:any)=>{
         if(data.msg=="success"){
           alert("Profile photo updated");
+          this.profile=null;
         }
         else{
           alert("Failed");

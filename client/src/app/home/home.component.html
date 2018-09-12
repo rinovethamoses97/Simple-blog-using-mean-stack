@@ -59,9 +59,16 @@
                 </div>
               </div>
               <div>
-                <ul *ngFor="let user of users" style="margin-top:16px;max-height:180px;overflow:auto;list-style:none;padding-left:0px;">                  
+                <ul  style="margin-top:16px;max-height:180px;overflow:auto;list-style:none;padding-left:0px;">                  
                     <div class="col-md-8">
-                        <li><a href="/home/{{user._id}}">{{user.email}}</a></li>
+                        <div *ngFor="let user of users; let i=index">
+                              <div *ngIf="selected==i">
+                              <li style="background-color:#343A40;"><a style="color:white" href="/home/{{user._id}}">{{user.email}}</a></li>
+                              </div>
+                              <div *ngIf="selected!=i">
+                                  <li><a href="/home/{{user._id}}">{{user.email}}</a></li>
+                              </div>    
+                        </div>
                     </div>
                 </ul>
               </div>

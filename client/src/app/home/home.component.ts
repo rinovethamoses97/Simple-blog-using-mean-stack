@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,HostListener } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { LoginService } from '../login/login.service';
 import { user } from './user';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,8 +13,32 @@ export class HomeComponent implements OnInit {
   users:user[];
   login_status:boolean;
   name:String;
+  selected:number=-1;
   constructor(private loginservice:LoginService,private router:Router) { }
 
+  @HostListener('document:keyup', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) { 
+      if(event.key=="ArrowUp" && this.users!=undefined){
+        if(this.selected==0){
+          this.selected=this.users.length-1;
+        }
+        else{
+          this.selected-=1;
+        }
+     }
+     else if(event.key=="ArrowDown" && this.users!=undefined){
+        this.selected=(this.selected+1)%(this.users.length);
+     }
+     else if(this.users==undefined){
+        this.selected=-1;
+     }
+  }
+  @HostListener('document:keypress', ['$event'])
+  handleKeypress(event: KeyboardEvent) { 
+    if(event.key=="Enter" && this.users!=undefined){
+       this.router.navigateByUrl('/home/'+this.users[this.selected]._id);
+    }
+  }
   ngOnInit() {
     this.useremail=new FormControl('');
      var temp=this.loginservice.getId();

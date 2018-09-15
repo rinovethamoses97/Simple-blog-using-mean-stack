@@ -1,7 +1,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed">
   <div class="container">
-    <a class="navbar-brand" href="#">Coding Blog</a>
+    <a class="navbar-brand" href="#">A2Z Blog</a>
     <button onclick="if(document.getElementById('navbarResponsive').className!='navbar-collapse collapse show'){document.getElementById('navbarResponsive').className='navbar-collapse collapse show';}else{document.getElementById('navbarResponsive').className='collapse navbar-collapse';}" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -24,8 +24,8 @@
         </li>
         </div>
         <div *ngIf="login_status==true">
-          <li class="nav-item active">
-            <a style="color:forestgreen;" class="nav-link" href="/login">{{name}}</a>
+          <li class="nav-item">
+            <a style="color:#42f450;" class="nav-link active" href="/login">{{name}}</a>
           </li>
         </div>
           
@@ -63,10 +63,12 @@
                     <div class="col-md-8">
                         <div *ngFor="let user of users; let i=index">
                               <div *ngIf="selected==i">
-                              <li style="background-color:#343A40;"><a style="color:white" href="/home/{{user._id}}">{{user.email}}</a></li>
+                                  <li style="background-color:#343A40;"><a style="color:white" href="/home/{{user._id}}">{{user.email}}</a></li>
+                                  <hr>
                               </div>
                               <div *ngIf="selected!=i">
                                   <li><a href="/home/{{user._id}}">{{user.email}}</a></li>
+                                  <hr>
                               </div>    
                         </div>
                     </div>

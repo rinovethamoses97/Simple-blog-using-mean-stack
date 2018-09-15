@@ -10,6 +10,7 @@ export class UploadphotoComponent implements OnInit {
   filetoupload:File;
   file:String;
   profile:File;
+  linkedinid:String;
   constructor(private registeruserservice:RegisteruserService) { }
 
   ngOnInit() {
@@ -30,5 +31,16 @@ export class UploadphotoComponent implements OnInit {
           alert("Failed");
         }
     })
+  }
+  linkedinidupdate(){
+     this.registeruserservice.updatelinkedinid(this.linkedinid).subscribe((data:any)=>{
+      if(data.msg=="success"){
+        alert("Linkedin ID updated");
+        this.linkedinid=null;
+      }
+      else{
+          alert("Failed");
+      } 
+     })
   }
 }

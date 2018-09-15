@@ -2,6 +2,7 @@ var mongoose=require('mongoose');
 var express=require('express');
 var bodyparser=require('body-parser');
 var cors=require('cors');
+var nodemailer=require('nodemailer');
 var router=express.Router();
 router.use(cors());
 router.use(bodyparser.json());
@@ -10,6 +11,16 @@ var user=require('./models/user');
 var comment=require('./models/comment');
 var IncomingForm = require('formidable').IncomingForm;
 var fs=require('fs');
+
+var transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+      user: 'a2zblogadmimail@gmail.com',
+      pass: 'blog1234'
+    }
+    });
 router.post('/insertpost',function(req,res){
     var newpost=new post({
         date:new Date(),
@@ -40,7 +51,20 @@ router.post('/createuser',function(req,res){
             res.send({msg:"failed"});
         }
         else{
-            res.send({msg:"success"});
+              var mailOptions = {
+                from: 'a2zblogadminmail@gmail.com',
+                to: req.body.email,
+                subject: 'Registration Success from A2Z blog',
+                text: 'Thank you for registering to A2Z. Happy Bloggin'
+              }; 
+              transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log('Email sent: ' + info.response);
+                  res.send({msg:"success"});
+                }
+              });
         }
     });
 }); 
@@ -49,6 +73,27 @@ router.post('/getposts',function(req,res){
         res.json(posts);
     })
 });
+router.post('/deletepost',function(req,res){
+    post.findByIdAndRemove(req.body.id,function(err){
+        if(!err){
+            res.send({msg:"success"});
+        }
+        else{
+            res.send({msg:"failed"});
+        }
+    })
+})
+router.post('/updatelinkedinid',function(req,res){
+   console.log(req.body);
+   user.findByIdAndUpdate(req.body.userid,{linkedinid:req.body.linkedinid},function(err,user){
+       if(!err){
+           res.send({msg:"success"});
+       }
+       else{
+           res.send({msg:"failed"});
+       }
+   })
+})
 router.post('/upload',function(req,res){
    
     var form = new IncomingForm();

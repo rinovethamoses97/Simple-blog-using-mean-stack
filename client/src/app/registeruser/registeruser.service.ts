@@ -27,4 +27,10 @@ export class RegisteruserService {
     });
     return this.http.post("http://localhost:3000/api/upload",data); 
   }
+  updatelinkedinid(linkedinid){
+    var headers=new HttpHeaders({
+      'Content-Type':  'application/json',
+    });
+    return this.http.post("http://localhost:3000/api/updatelinkedinid",{userid:localStorage.getItem("id"),linkedinid:linkedinid},{headers:headers});
+  }
 }

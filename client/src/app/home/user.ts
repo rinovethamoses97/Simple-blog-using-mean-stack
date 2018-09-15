@@ -3,4 +3,5 @@ export class user{
     email:String;
     _id:String;
     phone:String;    
+    linkedinid:String;
 }

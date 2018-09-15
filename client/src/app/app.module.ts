@@ -15,6 +15,8 @@ import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { RegisteruserComponent } from './registeruser/registeruser.component';
 import { UploadphotoComponent } from './uploadphoto/uploadphoto.component';
+import { ManagepostComponent } from './managepost/managepost.component';
+import { UserpostresolverService } from './managepost/userpostresolver.service';
 
 const approutes: Routes=[
   {
@@ -57,6 +59,12 @@ const approutes: Routes=[
  },{
    path:'upload',
    component:UploadphotoComponent
+ },{
+   path:'managepost',
+   component:ManagepostComponent,
+   resolve:{
+      posts:UserpostresolverService
+   }
  }
 ];
 @NgModule({
@@ -69,7 +77,8 @@ const approutes: Routes=[
     AboutComponent,
     HomeComponent,
     RegisteruserComponent,
-    UploadphotoComponent
+    UploadphotoComponent,
+    ManagepostComponent
   ],
   imports: [
     BrowserModule,

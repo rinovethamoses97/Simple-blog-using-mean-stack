@@ -15,6 +15,9 @@ var userSchema=mongoose.Schema({
     phone:{
         type:String,
         required:true
+    },
+    linkedinid:{
+        type:String,
     }
     
 });

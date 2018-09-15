@@ -1,0 +1,66 @@
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed">
+  <div class="container">
+    <a class="navbar-brand" href="#">Coding Blog</a>
+    <button onclick="if(document.getElementById('navbarResponsive').className!='navbar-collapse collapse show'){document.getElementById('navbarResponsive').className='navbar-collapse collapse show';}else{document.getElementById('navbarResponsive').className='collapse navbar-collapse';}" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/home">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/register">Register</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+  <div *ngFor="let post of posts">
+  <div class="row" *ngIf="post">
+    <div class="col-md-8">
+      <div class="card my-4">
+        <h5 class="card-header">Posted on {{post.date}}</h5>
+        <div class="card-body">
+          <div class="row">
+            <div class="input-group">
+              <div class="col-md-12">
+                  {{post.title}}        
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+    <div class="col-md-2">
+        <div class="row" style="margin-top:24px;margin-bottom:24px;">
+          <input type="button" class="btn btn-default" id="{{post._id}}" value="Delete" (click)="delete($event)">&nbsp;&nbsp;
+          <input id="myBtn" type="button" class="btn btn-default"  value="Edit">
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer class="py-5 bg-dark fixed-bottom" style="position: relative;" >
+    <div class="container">
+       <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+    </div>
+   <!-- /.container -->
+ </footer>
+ 

@@ -29,6 +29,7 @@ export class ManagepostComponent implements OnInit {
   ngOnInit() {
   }
   delete(event){
+    if((confirm("Are you sure want to delete?"))){
     var target = event.target || event.srcElement || event.currentTarget;
     var idAttr = target.attributes.id;
     var value = idAttr.nodeValue;
@@ -46,5 +47,6 @@ export class ManagepostComponent implements OnInit {
         alert("Failed");
       }
     })
+    }
   }
 }

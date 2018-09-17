@@ -29,8 +29,9 @@
 
 <!-- Page Content -->
 <div class="container">
+  <div id="backscreen">
   <div *ngFor="let post of posts">
-  <div class="row" *ngIf="post">
+   <div class="row" *ngIf="post">
     <div class="col-md-8">
       <div class="card my-4">
         <h5 class="card-header">Posted on {{post.date}}</h5>
@@ -48,19 +49,57 @@
     <div class="col-md-2">
         <div class="row" style="margin-top:24px;margin-bottom:24px;">
           <input type="button" class="btn btn-default" id="{{post._id}}" value="Delete" (click)="delete($event)">&nbsp;&nbsp;
-          <input id="myBtn" type="button" class="btn btn-default"  value="Edit">
+          <input id="{{post._id}}" type="button" class="btn btn-default"  value="Edit"  (click)="update($event)" onclick="document.getElementById('modal').style.display='block';document.getElementById('backscreen').style.display='none';">
         </div>
     </div>
     </div>
+  </div>
+  </div>
+  <div id="modal" class="row" style="background-color:ghostwhite;height:400px;display:none">
+      <div class="col-md-12">
+        <div class="card my-4">
+          <h5 class="card-header">New post <span id="closeicon" onmouseover="document.getElementById('closeicon').style.color='#C5C7BD';" onmouseout="document.getElementById('closeicon').style.color='black';" style="float: right;cursor:pointer"  onclick="document.getElementById('modal').style.display='none';document.getElementById('backscreen').style.display='block'">X</span></h5>
+          <div class="card-body">
+            <div class="row">
+            <div class="input-group">
+              <div class="col-md-12">
+                <!-- insert post  form -->
+                <form class="form-horizontal"  (ngSubmit)="submitpost()">
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="title">Title:</label>
+                    <div class="col-sm-10">          
+                      <input type="text" class="form-control" id="title" placeholder="Enter title" name="title" [(ngModel)]="title">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="content">Content:</label>
+                    <div class="col-sm-10">
+                      <textarea class="form-control" id="content" rows=10 placeholder="Enter content" name="content" [(ngModel)]="content">
+                      </textarea>          
+                    </div>
+                  </div>
+                  <div class="form-group">        
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-default">Update</button>
+                    </div>
+                  </div>
+                </form>
+  
+                
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
   </div>
 </div>
 <!-- /.container -->
 
 <!-- Footer -->
-<footer class="py-5 bg-dark fixed-bottom" style="position: relative;" >
+<!-- <footer class="py-5 bg-dark fixed-bottom" style="position: relative;" >
     <div class="container">
        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
     </div>
-   <!-- /.container -->
- </footer>
+ </footer> -->
  

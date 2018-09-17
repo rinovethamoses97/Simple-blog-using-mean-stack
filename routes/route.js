@@ -73,6 +73,16 @@ router.post('/getposts',function(req,res){
         res.json(posts);
     })
 });
+router.post('/updatepost',function(req,res){
+    post.findByIdAndUpdate(req.body.id,{title:req.body.title,content:req.body.content},function(err,post){
+        if(!err){
+            res.send({msg:"success"});
+        }
+        else{
+            res.send({msg:"failed"});
+        }
+    })
+})
 router.post('/deletepost',function(req,res){
     post.findByIdAndRemove(req.body.id,function(err){
         if(!err){

@@ -13,4 +13,10 @@ export class InsertpostService {
     });
     return this.http.post("http://localhost:3000/api/insertpost",post,{headers:headers});
   }
+  updatepost(id,title,content){
+    var headers=new HttpHeaders({
+      'Content-Type':  'application/json',
+    });
+    return this.http.post("http://localhost:3000/api/updatepost",{id:id,title:title,content:content},{headers:headers});
+  }
 }

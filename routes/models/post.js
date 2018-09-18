@@ -20,6 +20,9 @@ var postSchema=mongoose.Schema({
     userid:{
         type:String,
         required:true
+    },
+    photo:{
+        type:String,
     }
     
 });

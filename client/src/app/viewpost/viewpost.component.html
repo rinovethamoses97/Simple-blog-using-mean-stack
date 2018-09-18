@@ -58,7 +58,12 @@
           <hr>
 
           <!-- Preview Image -->
-          <img style="width:900px;height:300px" class="img-fluid rounded" src="https://wallup.net/wp-content/uploads/2017/03/29/480566-web_development-minimalism.jpg" alt="">
+          <div *ngIf="post.photo=='null'">
+              <img  style="height:300px" class="card-img-top" src="https://d2u6gqtb2vk2pn.cloudfront.net/blogpost.png" alt="Card image cap">
+          </div>
+          <div *ngIf="post.photo!='null'">
+              <img  style="height:300px" class="card-img-top" src="../../assets/uploads/post{{post._id}}.jpeg"  alt="Card image cap">
+          </div>
 
           <hr>
 

@@ -22,22 +22,50 @@ var transporter = nodemailer.createTransport({
     }
     });
 router.post('/insertpost',function(req,res){
-    var newpost=new post({
-        date:new Date(),
-        time:req.body.time,
-        title:req.body.title,
-        content:req.body.content,
-        category:req.body.category,
-        userid:req.body.userid
-    });
-    newpost.save(function(err){
-        if(err){
-            res.send({msg:'failed'});
-        }
-        else{
-            res.send({msg:'success'});
-        }
-    });
+    var form = new IncomingForm();
+    form.parse(req, function (err, fields, files) {
+          if(fields.filefound=="true"){
+            var oldpath = files.file.path;
+            var newpost=new post({
+              date:new Date(),
+              title:fields.title,
+              content:fields.content,
+              category:fields.category,
+              userid:fields.userid,
+              });
+              newpost.save(function(err,post){
+                  if(err){
+                      res.send({msg:'failed'});
+                  }
+                  else{
+                      var newpath = "C:/Users/RinoVM/Desktop/Rino_Blog/client/src/assets"+ '/uploads/' + "post"+post._id+".jpeg";
+                      newpost.photo=newpath;
+                      newpost.save();
+                      fs.rename(oldpath, newpath, function (err) {
+                          if (err) throw err;
+                          res.send({msg:"success"});
+                      });              
+                  }
+              });
+          }
+          else{
+            var newpost=new post({
+                date:new Date(),
+                title:fields.title,
+                content:fields.content,
+                category:fields.category,
+                userid:fields.userid,
+                photo:"null"
+                });
+            newpost.save(function(err){
+                if(!err){
+                    res.send({msg:"success"});
+                }
+                else
+                    res.send({msg:"failed"});
+            })
+          }
+        });
 });
 router.post('/createuser',function(req,res){
     var newuser=new user({

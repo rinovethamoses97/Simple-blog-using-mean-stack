@@ -41,7 +41,12 @@
           <!-- Blog Post -->
           <div *ngFor="let post of posts">
           <div class="card mb-4" *ngIf="post._id">
-            <img  style="height:300px" class="card-img-top" src="https://wallup.net/wp-content/uploads/2017/03/29/480566-web_development-minimalism.jpg" alt="Card image cap">
+            <div *ngIf="post.photo=='null'">
+                <img  style="height:300px" class="card-img-top" src="https://d2u6gqtb2vk2pn.cloudfront.net/blogpost.png" alt="Card image cap">
+            </div>
+            <div *ngIf="post.photo!='null'">
+                <img  style="height:300px" class="card-img-top" src="../../assets/uploads/post{{post._id}}.jpeg"  alt="Card image cap">
+            </div>
             <div class="card-body">
               <h2 class="card-title">{{post.title}}</h2>
               <p class="card-text">{{post.content| slice:0:100}}...</p>

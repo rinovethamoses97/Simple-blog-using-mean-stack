@@ -5,4 +5,5 @@ export class post{
     content:String;
     category:String;
     userid:String;
+    photo:String;
 }

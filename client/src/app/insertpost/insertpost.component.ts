@@ -22,6 +22,8 @@ export class InsertpostComponent implements OnInit {
   content:FormControl;
   category:FormControl;
   userid:String;
+  filetoupload:File=null;
+  postimage:File;
   constructor(private insertpostservice:InsertpostService,private loginservice:LoginService,private route:Router) {
       var temp=this.loginservice.getId();
       this.userid=temp.id;
@@ -50,23 +52,41 @@ export class InsertpostComponent implements OnInit {
       category:this.category,
     });
   }
+  onfileadded(files: FileList){
+    this.filetoupload=files.item(0);
+    console.log(this.filetoupload);
+  }
   submitpost(){
     if(this.postform.valid){
       if(this.postform.value.title=="" || this.postform.value.content=="" ||this.postform.value.category==""){
         alert("Fields Cannot be Empty");
         return;
       }
+      const formData: FormData = new FormData();
+      if(this.filetoupload==null){
+        formData.append('filefound',"false");
+      }
+      else{
+        formData.append('file',this.filetoupload,localStorage.getItem('id'));
+        formData.append('filefound',"true");
+      }
+      formData.append('category',this.postform.value.category);
+      formData.append('title',this.postform.value.title);
+      formData.append('content',this.postform.value.content);
+      formData.append('userid',""+this.userid);
+
       var temp_postform={
         category:this.postform.value.category,
         title:this.postform.value.title,
         content:this.postform.value.content,
         userid:this.userid,
       }
-      this.insertpostservice.addPost(temp_postform)
+      this.insertpostservice.addPost(formData)
       .subscribe((data:any) => {
          if(data.msg=="success"){
             alert("Inserted");
             this.postform.reset();
+            this.postimage=null;
          }
          else{
             alert("Failed");

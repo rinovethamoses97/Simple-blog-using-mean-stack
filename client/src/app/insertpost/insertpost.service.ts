@@ -7,11 +7,8 @@ import { HttpHeaders } from '@angular/common/http';
 export class InsertpostService {
 
   constructor(private http:HttpClient) { }
-  addPost(post){
-    var headers=new HttpHeaders({
-      'Content-Type':  'application/json',
-    });
-    return this.http.post("http://localhost:3000/api/insertpost",post,{headers:headers});
+  addPost(formdata){
+    return this.http.post("http://localhost:3000/api/insertpost",formdata);
   }
   updatepost(id,title,content){
     var headers=new HttpHeaders({

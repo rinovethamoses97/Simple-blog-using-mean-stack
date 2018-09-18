@@ -60,6 +60,7 @@ router.post('/createuser',function(req,res){
               transporter.sendMail(mailOptions, function(error, info){
                 if (error) {
                   console.log(error);
+                  res.send({msg:"success"});
                 } else {
                   console.log('Email sent: ' + info.response);
                   res.send({msg:"success"});

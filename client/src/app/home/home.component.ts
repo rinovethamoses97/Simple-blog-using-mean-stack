@@ -54,7 +54,6 @@ export class HomeComponent implements OnInit {
      }
   }
   fetchuser(){
-       
        if(this.useremail.value!=""){
           this.loginservice.finduser(this.useremail.value).subscribe((data:any)=>{
              this.users=data;

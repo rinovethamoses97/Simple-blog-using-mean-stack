@@ -15,6 +15,7 @@ export class RegisteruserComponent implements OnInit {
   repassword:FormControl;
   phone:FormControl;
   filetoupload:File;
+  spinner:String="false";
   constructor(private registeruserservice:RegisteruserService) { }
   createformelements(){
     this.email=new FormControl('');
@@ -47,10 +48,12 @@ export class RegisteruserComponent implements OnInit {
          return;
         } 
         this.registeruserservice.checkuser(this.email.value).subscribe((data:any)=>{
+          this.spinner="true";
           if(data.length==0){
              //no user with the same email exist
              this.registeruserservice.createuser(this.registerform.value).subscribe((data:any)=>{
                  if(data.msg=="success"){
+                   this.spinner="false";
                    alert("User Succesfully registered");
                    this.registerform.reset();
                  }

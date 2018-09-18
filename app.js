@@ -14,14 +14,6 @@ mongoose.connection.on('error',function(err){
     }
 });
 
-
-
-
-
-var http = require("http");
-var server = http.createServer(app);
-var port = Number(process.env.PORT || 3000);
-server.listen(port);
-// app.listen(3000,function(){
-//     console.log('Server running in the port 3000');
-// })
+app.listen(process.env.PORT||3000,function(){
+    console.log('Server running in the port 3000');
+})

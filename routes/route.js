@@ -9,7 +9,7 @@ router.use(bodyparser.json());
 var post=require('./models/post');
 var user=require('./models/user');
 var comment=require('./models/comment');
-var IncomingForm = require('formidable').IncomingForm;
+var IncomingForm = require('formidable');
 var fs=require('fs');
 
 var transporter = nodemailer.createTransport({
@@ -105,23 +105,27 @@ router.post('/updatelinkedinid',function(req,res){
    })
 })
 router.post('/upload',function(req,res){
-   
+    
     var form = new IncomingForm();
-    form.on('file', (field, file) => {
-    // Do something with the file
-    // e.g. save it to the database
-    // you can access it using file.path
-      
-      res.send({msg:"success"});
-    });
-    form.on('fileBegin', function (name, file){
-        console.log(__dirname);
-        file.path = "C:/Users/RinoVM/Desktop/Rino_Blog/client/src/assets"+ '/uploads/' + "profile"+file.name+".jpeg";
-    });
-    form.on('end', () => {
-        // res.json();
-    });
-    form.parse(req);
+    // form.on('fileBegin', function (name, file){
+    //     file.path = "C:/Users/RinoVM/Desktop/Rino_Blog/client/src/assets"+ '/uploads/' + "profile"+file.name+".jpeg";
+    // });
+    // form.on('field', function(name, value) {
+    //     console.log(name);
+    // });
+    // form.on('end', () => {
+    //     // res.json();
+    //     res.send({msg:"success"});
+    // });
+    // form.parse(req);
+    form.parse(req, function (err, fields, files) {
+        var oldpath = files.file.path;
+        var newpath = "C:/Users/RinoVM/Desktop/Rino_Blog/client/src/assets"+ '/uploads/' + "profile"+files.file.name+".jpeg";
+        fs.rename(oldpath, newpath, function (err) {
+          if (err) throw err;
+          res.send({msg:"success"});
+        });
+        });
     });
 router.post('/getUser',function(req,res){
     user.find({_id:req.body.userid},function(err,users){

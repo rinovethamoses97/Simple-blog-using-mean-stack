@@ -14,8 +14,9 @@ mongoose.connection.on('error',function(err){
         console.log(''+err);
     }
 });
+app.use(express.static(path.join(__dirname, 'dist')));
 app.get('*',function(req,res){
-    res.sendFile(__dirname+'/client/dist/client/index.html');
+    res.sendFile(path.join(__dirname, '/client/dist/client/index.html'));
 });
 app.listen(process.env.PORT||3000,function(){
     console.log('Server running in the port 3000');

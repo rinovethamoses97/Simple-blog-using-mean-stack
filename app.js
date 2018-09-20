@@ -1,6 +1,7 @@
 var express=require('express');
 var mongoose=require('mongoose');
 var app=express();
+var path = require('path');
 var route=require('./routes/route');
 app.use('/api',route);
 //mongoose.connect('mongodb://rino:rino1234@ds161312.mlab.com:61312/a2zblog'); //for Mlab db

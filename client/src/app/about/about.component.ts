@@ -11,6 +11,7 @@ export class AboutComponent implements OnInit {
     name:String;
     email:String;
     phone:String;
+    linkedinid:String;
   };
   constructor(private activatedrouter:ActivatedRoute) {
     this.activatedrouter.data.subscribe((res)=>{

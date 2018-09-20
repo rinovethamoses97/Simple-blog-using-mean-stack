@@ -1,30 +1,30 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed">
   <div class="container">
-    <a class="navbar-brand" href="#">A2Z Blog</a>
+    <a class="navbar-brand" href="#"><img style="height:50px;" src="https://www.freelogoservices.com/api/main/images/1j+ojVVCOMkX9Wyrexe4hGfYjJyb3ksQzwiR1TN9Nmkd+AtkmSEkgPJt8Ot+dERBpAQGghEMdcI+iiN6VA==">A2Z Blog</a>
     <button onclick="if(document.getElementById('navbarResponsive').className!='navbar-collapse collapse show'){document.getElementById('navbarResponsive').className='navbar-collapse collapse show';}else{document.getElementById('navbarResponsive').className='collapse navbar-collapse';}" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+        <li class="nav-item" style="font-size:20px;">
           <a class="nav-link active" href="/home">Home
             <span class="sr-only">(current)</span>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" style="font-size:20px;">
           <a class="nav-link" href="/about">About</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" style="font-size:20px;">
           <a class="nav-link" href="/register">Register</a>
         </li>
         <div *ngIf="login_status==false">
-        <li class="nav-item">
+        <li class="nav-item" style="font-size:20px;">
           <a class="nav-link" href="/login">Login</a>
         </li>
         </div>
         <div *ngIf="login_status==true">
-          <li class="nav-item">
+          <li class="nav-item" style="font-size:20px;">
             <a style="color:#42f450;" class="nav-link active" href="/login">{{name}}</a>
           </li>
         </div>
@@ -64,11 +64,9 @@
                         <div *ngFor="let user of users; let i=index">
                               <div *ngIf="selected==i">
                                   <li style="background-color:#343A40;"><a style="color:white" href="/home/{{user._id}}">{{user.email}}</a></li>
-                                  <hr>
                               </div>
                               <div *ngIf="selected!=i">
                                   <li><a href="/home/{{user._id}}">{{user.email}}</a></li>
-                                  <hr>
                               </div>    
                         </div>
                     </div>
